@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+}
+
+.cabecalho{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    font-family: 'Barlow', sans-serif;
+    color: #138383;
+    padding: 20px;
+    border-bottom: solid 2px #138383;
+    position: fixed;
+    z-index: 1; /* Trazendo o cabeçalho pra frente do restante do conteúdo no eixo Z*/
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+}
+
+ul{
+    display: flex;
+    list-style: none;
+}
+li{
+    margin: 15px;
+}
+li:hover{
+    transform: scale(1.1);
+}
+.conteudo-e-rodape{    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-bottom: 10%;
+    padding-top: 100px;
+}
+
+.grade-botoes{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /*width: 79vw;*/
+    padding: 3%;
+    
+}
+.botao-mais-descricao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 9px;
+    flex-basis: 10%;
+    padding: 0px;
+}
+.botao{
+    background-color: #138383;
+    padding: 35px 35px;
+    border-radius: 50px;
+    margin-bottom: 5px;
+}
+
+.botao:hover{
+    transform: scale(1.1);
+    background-color: #1bb9b9;
+}
+
+.roda-pe{
+    border-top: solid 2px #138383;
+    background-color: white;
+    padding-top: 10px ;
+    font-family: 'Barlow', sans-serif;
+}
