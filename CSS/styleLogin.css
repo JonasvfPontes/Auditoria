@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito:wght@300&display=swap');
+
+*{
+    font-family: 'Nunito', sans-serif;
+    margin: 0%;
+    padding: 0%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(0deg, rgba(36,34,195,0.36738445378151263) 0%, rgba(255,255,255,1) 100%);
+    height: 100vh;
+}
+
+form{
+    margin-top: 100px;
+    display: flex;
+    background-color: rgb(22, 22, 156);
+    width: 250px;
+    height: 200px;
+    padding: 20px;
+    color: aliceblue;
+    justify-content: center;
+    border-radius: 10px;
+}
+#imagem{
+    z-index: 1;
+    position: absolute;
+    width: 100px;
+    margin: 50px 0px 0px 230px;
+
+}
+.painel-login-input{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin: 5px;
+    background-color: rgb(45, 100, 126);
+    padding: 1% 10%;
+    border-radius: 20px;
+    
+}
+
+.painel-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+input{
+    color: rgb(255, 255, 255);
+    height: 25px;
+    font-family: sans-serif;
+    border: none;
+    background-color: rgb(45, 100, 126);
+    outline: none;
+    width: 125px;
+    padding-left: 10px;
+    
+}
+
+.btn-enviar{
+    padding: 3px 30px;
+    border-radius: 5px;
+    border: 1px solid rgb(41, 52, 212);
+    margin-top: 5px;
+}
+
+.btn-enviar:hover{
+    background-color: cadetblue;
+    transform: scale(1.1);
+}
+
+.aviso{
+    position: absolute;
+}

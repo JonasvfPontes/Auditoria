@@ -1,80 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100&display=swap');
 
-*{
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Nunito:wght@300&display=swap');
+
+
+body{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    border: none;
 }
 
-.cabecalho{
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    font-family: 'Barlow', sans-serif;
-    color: #138383;
-    padding: 20px;
-    border-bottom: solid 2px #138383;
-    position: fixed;
-    z-index: 1; /* Trazendo o cabeçalho pra frente do restante do conteúdo no eixo Z*/
-    width: 100%;
-    background-color: rgb(255, 255, 255);
+input[type="file"] {
+    padding: 5px;
+    background-color: rgb(43, 44, 34);
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    margin: 0px 5px 5px 5px;
+    width: 300px;
 }
 
-ul{
-    display: flex;
-    list-style: none;
+.btnEnviar{
+    padding: 5px;
+    margin: 10px 10px 10px 30px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid #143191;
 }
-li{
-    margin: 15px;
-}
-li:hover{
+.btnEnviar:hover{
+    background-color: rgb(185, 201, 231);
     transform: scale(1.1);
 }
-.conteudo-e-rodape{    
+
+#cabecalho{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    padding-left: 10%;
-    padding-right: 10%;
-    padding-bottom: 10%;
-    padding-top: 100px;
+    justify-content: end;
+    padding: 10px;
+    /*width: 100%;*/
+    height: 10%;
+    border-bottom: 2px solid #143191;
 }
 
-.grade-botoes{
+#logoDaoSilveira{
+    margin-right: 5%;
+    width: 10%;
+}
+.grade-equipes {
+    margin: 2%;
     display: flex;
+    justify-content: start;
     flex-wrap: wrap;
-    align-items: center;
-    /*width: 79vw;*/
-    padding: 3%;
     
 }
-.botao-mais-descricao{
+
+.equipe{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 9px;
-    flex-basis: 10%;
-    padding: 0px;
-}
-.botao{
-    background-color: #138383;
-    padding: 35px 35px;
-    border-radius: 50px;
-    margin-bottom: 5px;
+    font-family: 'Nunito', sans-serif;
 }
 
-.botao:hover{
-    transform: scale(1.1);
-    background-color: #1bb9b9;
-}
 
-.roda-pe{
-    border-top: solid 2px #138383;
-    background-color: white;
-    padding-top: 10px ;
-    font-family: 'Barlow', sans-serif;
-}
