@@ -3,7 +3,7 @@
 $hostName = "localhost"; // Normalmente é "localhost" ou o endereço IP do servidor MySQL
 $usuario = "root"; // Nome de usuário do MySQL
 $senha = ""; // Senha do MySQL
-$banco_de_dados = "usuarios"; // Nome do banco de dados que você deseja se conectar
+$banco_de_dados = "balancoDaoSilveira"; // Nome do banco de dados que você deseja se conectar
 
 // Criar uma conexão com o banco de dados
 $mysqli = new mysqli($hostName, $usuario, $senha, $banco_de_dados);

@@ -25,12 +25,13 @@ body{
 .larguraPageMain{
     text-align: center;
     min-width: 1000px;
+    
 }
 #paginaToda{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 1680px;
+    max-width: 1400px;
     min-height: 97vh;
     margin: 10px;
     border: 1px solid var(--corAzul);
@@ -64,20 +65,22 @@ body{
     margin: auto;
     border-bottom: 1px solid var(--corAzul) ;
     padding: 0.5rem;
-    
-    text-align: center;
-    
-}
 
+    text-align: center;
+}
+.mensagemImportacao{
+    display: flex;
+}
 .configEquipes button{
     border-radius: 5px;
     border: 1px solid;
     padding: 0.2rem 0.5rem ;
     font-family: var(--font);
     font-size: medium;
+    
 }
 .configEquipes button:hover{
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 .configEquipes input{
     width: 60px;
@@ -88,31 +91,13 @@ body{
     background-color: var(--corEquipeNaoEnviado);
     margin: 6px;
     
-    
-    
 }
 
-/*-----BOTÕES DAS EQUIPES----------*/
-input[type="file"] {
-    padding: 5px;
-    border-radius: 5px;
-    color: rgb(255, 255, 255);
-    margin: 0px 5px 5px 5px;
-    width: 300px;
+.configEquipes input[type="file"]{
+    width: 250px;
+    padding: 1px 3px 6px 3px ;
 }
 
-.btnEnviar{
-    padding: 5px;
-    width: 100px;
-    border-radius: 5px;
-    border: 1px solid rgb(185, 201, 231);
-    
-}
-.btnEnviar:hover{
-    background-color: rgb(185, 201, 231);
-    transform: scale(1.1);
-    box-shadow: 5px 2px 10px;
-}
 
 /*---- CONTAINER DAS EQUIPES -------*/
 .grade-equipes {
@@ -131,10 +116,24 @@ input[type="file"] {
     padding: 0.5rem;
     border-radius: 5px;
     box-shadow: 5px 2px 10px;
+    
 }
+
+.equipe input{
+    width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin: 2px 2px;
+    padding: 2px 3px;
+}
+
 .equipe button{
     height: 20px;
     font-family: var(--font);
+}
+.equipe button:hover{
+    transform: scale(1.1);
 }
 
 

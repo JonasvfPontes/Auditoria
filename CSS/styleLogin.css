@@ -9,7 +9,7 @@
 body{
     display: flex;
     justify-content: center;
-    background: linear-gradient(0deg, rgba(36,34,195,0.36738445378151263) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(20,25,80,1) 0%, rgba(255,255,255,1) 62%);
     height: 100vh;
 }
 
@@ -73,5 +73,5 @@ input{
 }
 
 .aviso{
-    position: absolute;
+    display: block;
 }
