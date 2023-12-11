@@ -26,12 +26,13 @@ body{
     text-align: center;
     min-width: 1000px;
     
+    
 }
 #paginaToda{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 1400px;
+    max-width: 1300px;
     min-height: 97vh;
     margin: 10px;
     border: 1px solid var(--corAzul);
@@ -98,6 +99,9 @@ body{
     padding: 1px 3px 6px 3px ;
 }
 
+.alterarQdeEstoque{
+    margin: 0px;
+}
 
 /*---- CONTAINER DAS EQUIPES -------*/
 .grade-equipes {

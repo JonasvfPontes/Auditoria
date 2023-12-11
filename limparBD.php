@@ -2,11 +2,15 @@
     session_start();
 
     if (isset($_POST['sim'])) {
+        //Limpar tabela estoque no banco de dados
         include('conexao.php');
         $sqlCode = "TRUNCATE TABLE estoque";
         $sqlQuery = $mysqli->query($sqlCode);
         $_SESSION['mensagem_Importacao'] = 'Sucesso, tabela limpa!';
         $_SESSION['enviar_lista0'] = 'Enviar';
+        $_SESSION['mensagemAlterarQtdEstoque'] = '';
+        $sqlCode = "TRUNCATE TABLE nome_equipes";
+        $sqlQuery = $mysqli->query($sqlCode);
         header('location: main.php');
     } elseif (isset($_POST['nao'])) {
         header('location: VerEstoque.php');
@@ -38,10 +42,12 @@
                 max-width: 1300px;
             }
             .sim{
-                padding: 10px 20px;
+                padding: 5px 10px;
                 border-radius: 5px;
                 border: 1px solid;
                 margin: 50px;
+                background-color: rgba(150, 25, 40, 1);
+                color: white;
             }
             .nao{
                 padding: 30px 60px;
@@ -65,6 +71,9 @@
         <div class="pergutaConfimacao">
             <div>
                 <h1>Você tem certeza que deseja apagar os dados do Estoque?</h1>
+                ________________________________________________________________
+                <h3>Isso vai apagar todas as configurações que você fez até agora como,<br>
+                    divisões das equipes e os nomes de cada uma</h3>
                 <form action="" method="post">
                     <input type="submit" class="nao" name="nao" value="Não">
                     <input type="submit" class="sim" name="sim" value="Sim">

@@ -17,12 +17,17 @@ if ($_SESSION['logado'] == false ?? null) {
     <main>
         <?php
         include_once "conexao.php";
-        $chavePost = array_keys($_POST);
-        $nomeEquipe = '';
-        $nomeEquipe = $chavePost[0];
+        $chavePost = array_keys($_POST); //Virifica qual equipe foi enviada no POST
+        $nomeEquipe = $_SESSION['Nome_Equipe' . substr($chavePost[0],-1) ]; //Pegar o valor da SESSION referente ao número do POST que foi enviado
         $sqlCode = "SELECT * FROM estoque  WHERE nome_Equipe = '$nomeEquipe'";
         $sqlQuery = $mysqli->query($sqlCode);
-
+        $sqlCode1 = "SELECT valor FROM config WHERE parametro='visualizar_qtde'";
+        $valor = $mysqli->query($sqlCode1)->fetch_assoc();
+        if($valor['valor'] == 'on'){
+            $visualizarQtde = true;
+        }else{
+            $visualizarQtde = false;
+        }
 
         //montando tabela com as informações do BD
         if ($sqlQuery->num_rows > 0) {
@@ -32,7 +37,9 @@ if ($_SESSION['logado'] == false ?? null) {
             echo '<th>Código</th>';
             echo '<th>Descrição</th>';
             echo '<th>Locação</th>';
-            echo '<th>Qtd Estoque</th>';
+            if($visualizarQtde){
+                echo '<th>Qtd Estoque</th>';
+            }
             echo '<th>Qtd Contada</th>';
             echo '</tr>';
             
@@ -43,7 +50,9 @@ if ($_SESSION['logado'] == false ?? null) {
                 echo '<td>' . $row['cod_Item'] . '</td>';
                 echo '<td>' . $row['desc_Item'] . '</td>';
                 echo '<td>' . $row['locacao'] . '</td>';
-                echo '<td>' . $row['qtd_Estoque'] . '</td>';
+                if($visualizarQtde){
+                    echo '<td>' . $row['qtd_Estoque'] . '</td>';
+                }
                 echo '<td><input type="number" onkeypress="return event.charCode >= 48 && event.charCode <= 57" class="inputCelula"></td>';
                 echo '</tr>';
                 $linha++;
@@ -51,9 +60,10 @@ if ($_SESSION['logado'] == false ?? null) {
             echo '</table>';
             echo "</p>";
         } else {
+            //lista vazia
             echo '<div class="aviso-de-lista-vazia">';
             echo '<h1> </h1>';
-            echo '<h2>Não há nada aqui</h2>';
+            echo '<h2><br>Não há nada aqui <br>...<br></h2>';
             echo '<img src="imgs/sozinho.png" class="imgSozinho" alt="lista-vazia">';
             echo '</div>';
         }
