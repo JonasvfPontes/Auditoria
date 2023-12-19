@@ -13,6 +13,15 @@ if (!isset($_SESSION['qtdeEquipes'])) {
         $_SESSION['qtdeEquipes'] = $row['valor'];
     }
 }
+$_SESSION['Nome Equipe Atual'] = null;
+if(!isset($_SESSION['num contagem atual'])){
+    $sqlCode = "SELECT valor FROM config WHERE parametro='num_contagem'";
+    $sqlQuery = $mysqli->query($sqlCode);
+    $row = $sqlQuery->fetch_assoc(); //pega os valores do resultado da query
+    $_SESSION['num contagem atual'] = $row['valor'];
+}
+
+$_SESSION['cabecalho da lista'] = '<h2>' . $_SESSION['num contagem atual'] . "ª Contagem</h2>";
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +43,6 @@ if (!isset($_SESSION['qtdeEquipes'])) {
                     <?php
                     if (isset($_SESSION['qtdeEquipes'])) {
                         for ($i = 1; $i <= $_SESSION['qtdeEquipes']; $i++) {
-                            
                             $sqlCode = "SELECT *  FROM nome_equipes WHERE id='$i'";
                             $sqlQuery = $mysqli->query($sqlCode);
                             if($sqlQuery->num_rows > 0){
@@ -57,7 +65,8 @@ if (!isset($_SESSION['qtdeEquipes'])) {
 
         <footer>
             <?php
-            if (strtolower($_SESSION['NomeUsuario']) == 'contadores') {
+            $_SESSION['usuario contador'] = $_COOKIE['Usuario_Contador']?? false;
+            if ($_SESSION['usuario contador']) {
                 echo '<a href="logout.php">';
                 echo '<button type="submit" id="btnSair">Sair</button>';
                 echo '</a>';

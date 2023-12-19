@@ -91,7 +91,7 @@ if ($chavesPost[0] == 'separador') {
             $sqlQuery = $mysqli->query($sqlCode);
             $linhas_Importadas = 0;
             $linhas_Nao_Importadas = 0;
-            $sqlCode = "INSERT INTO estoque (cod_Item, desc_Item, locacao, qtd_Estoque, qtd_Contada, nome_Equipe) VALUES (?, ?, ?, ?, ?, ?)";
+            $sqlCode = "INSERT INTO estoque (cod_Item, desc_Item, locacao, qtd_Estoque, qtd_auditada, nome_Equipe, continuar_saindo_na_lista, lista_atual) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             foreach ($dados as $linha) {
                 //Verificar se vou precisar converter em UTF-8                
                 //----------------------------------------------------------------------
@@ -99,10 +99,12 @@ if ($chavesPost[0] == 'separador') {
                 $descItem = $linha[1] ?? NULL;
                 $locacao = $linha[2] ?? NULL;
                 $qtd_Estoque = $linha[3] ?? NULL;
-                $qtd_Contada = NULL;
+                $qtd_auditada = NULL;
+                $continua_saindo_na_lista = 'SIM';
+                $listaAtual = 'SIM';
 
                 $sqlQuery = $mysqli->prepare($sqlCode);
-                $sqlQuery->bind_param('sssiis', $codItem, $descItem, $locacao, $qtd_Estoque, $qtd_Contada, $indiceLista);
+                $sqlQuery->bind_param('sssiisss', $codItem, $descItem, $locacao, $qtd_Estoque, $qtd_auditada, $indiceLista, $continua_saindo_na_lista, $listaAtual);
                 if ($sqlQuery->execute()) {
                     $linhas_Importadas++;
                 } else {
@@ -118,7 +120,7 @@ if ($chavesPost[0] == 'separador') {
                 //Alterar qtde do estoque Inativo
                 $_SESSION['mensagemAlterarQtdEstoque'] = '| Não alterar quantidade <form action="processarArquivo.php" method="post"><input type="checkbox" class="alterarQdeEstoque" name="CheckalterarQdeEstoque" id=""><button type="submit" name="alterarQtdEstoque" >Salvar</button></form>';
             }
-            $_SESSION['mensagem_Importacao'] = $linhas_Importadas . ' linhas importadas e ' . $linhas_Nao_Importadas . ' não importadas. <p><a href="VerEstoque.php" target="_blank">(- Clique aqui -)</a></p> para ver a lista ';
+            $_SESSION['mensagem_Importacao'] = $linhas_Importadas . ' linhas importadas e ' . $linhas_Nao_Importadas . ' não importadas. <p><a href="VerEstoque.php" target="_blank">&nbsp Clique aqui &nbsp</a></p> para ver a lista ';
             $style = '<p style="background-color: rgb(238, 236, 86);">Lista enviada!</p>';
             $_SESSION['enviar_lista0'] = 'Lista enviada!'; //Deixa apenas os números
             //. preg_replace("/[^0-9]+/", "", $chavesPost[0])
@@ -148,11 +150,12 @@ if ($chavesPost[0] == 'separador') {
         $numLinhasJaUsadas = 0;
         if ($_POST[$nome_Equipe . 'A'] == 0 && $_POST[$nome_Equipe . 'B'] == 0) {
             //zerar todas as locações com o nome da dupla
-            $sqlCode = "UPDATE estoque SET nome_Equipe = 'listaEquipe0' WHERE nome_Equipe = '" . $_SESSION['Nome_Equipe' . $numEquipe] . "'";
+            $nome_Equipe = $_SESSION['Nome_Equipe' . $numEquipe];
+            $sqlCode = "UPDATE estoque SET nome_Equipe = 'listaEquipe0' WHERE nome_Equipe = '$nome_Equipe' AND lista_atual = 'SIM' AND continuar_saindo_na_lista = 'SIM'";
             $_SESSION['enviar_lista' . $numEquipe] = '<p style="color: GREEN;"><strong>Qtde de linhas (' . $numLinhas . ')</strong></p>';
         } else {
             //atualizar estoque com o nome da equipe que foi enviado no POST com o valor da SESSION
-            $sqlCode = "UPDATE estoque SET nome_Equipe = '" . $_SESSION['Nome_Equipe' . $numEquipe] . "' WHERE locacao >= '" . $_POST[$nome_Equipe . "A"] . "' AND locacao <='" . $_POST[$nome_Equipe . "B"] . "' AND nome_equipe = 'listaEquipe0' ";
+            $sqlCode = "UPDATE estoque SET nome_Equipe = '" . $_SESSION['Nome_Equipe' . $numEquipe] . "' WHERE locacao >= '" . $_POST[$nome_Equipe . "A"] . "' AND locacao <='" . $_POST[$nome_Equipe . "B"] . "' AND nome_equipe = 'listaEquipe0' AND lista_atual = 'SIM'";
 
             //Verificar se tinha alguma linhas já em uso por outra equipe
             $sqlCodeComparar = "SELECT * FROM estoque WHERE locacao >= '" . $_POST[$nome_Equipe . "A"] . "' AND locacao <='" . $_POST[$nome_Equipe . "B"] . "' AND nome_equipe <> 'listaEquipe0' ";
@@ -162,6 +165,7 @@ if ($chavesPost[0] == 'separador') {
             }
         }
         $sqlQuery = $mysqli->query($sqlCode);
+        
         //Pegar qtde de linhas dessa equipe
         $sqlCode = "SELECT * FROM estoque WHERE nome_Equipe = '" . $_SESSION['Nome_Equipe' . $numEquipe] . "'";
         $sqlQuery = $mysqli->query($sqlCode);

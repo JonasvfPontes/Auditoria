@@ -27,7 +27,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 10%;
+    height: 50px;
     width: 100%;
     border-bottom: 1px solid rgb(20, 25, 80);
     
@@ -40,6 +40,7 @@ header button{
     border-radius: 5px;
     border: none;
     box-shadow:2px 2px 5px;
+    
 }
 header button:hover{
     transform: scale(1.1);

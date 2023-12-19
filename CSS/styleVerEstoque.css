@@ -1,0 +1,99 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Gabarito', sans-serif;
+}
+
+body {
+    min-width: 98vw;
+}
+
+table {
+    margin: auto;
+    margin-top: 100px;
+
+}
+
+td {
+    border: 1px solid;
+    text-align: center;
+    width: 10px;
+    padding: 0px 5px;
+}
+
+td input {
+    border: none;
+    padding: 3px;
+}
+
+td input:focus {
+    transform: scale(1.1);
+}
+
+header {
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(58, 85, 173);
+    padding: 20px;
+    top: 0%;
+    width: 100%;
+
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+header input {
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin: 2px;
+}
+
+header input:focus {
+    transform: scale(1.2);
+}
+
+header button {
+    padding: 0.5rem;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 2px;
+
+}
+
+header button:hover {
+    transform: scale(1.1);
+}
+
+.estoque {
+    padding: 20px;
+    margin: 0%;
+    max-width: 95vw;
+}
+
+.info {
+    position: absolute;
+    margin: auto;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.form_estoque{
+    border: none;
+}
+
+.alterar_qtde{
+    position: fixed;
+    top: 100px;
+    left: 100px;
+    padding: 0.5rem;
+
+
+}

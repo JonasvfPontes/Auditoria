@@ -69,6 +69,7 @@ body{
 
     text-align: center;
 }
+
 .mensagemImportacao{
     display: flex;
 }
@@ -224,11 +225,23 @@ footer{
     height: 20px;
     border-radius: 3px;
     border: 1px solid rgb(185, 201, 231);
-        
+    
 }
 #btnSair:hover{
     transform: scale(1.1);
     background-color: cadetblue;
     color: aliceblue;
     box-shadow: 5px 2px 10px #15171d;
+}
+
+.confi-equipes{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.confi-equipes input{
+    margin: 0%;
+    
 }

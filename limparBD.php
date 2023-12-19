@@ -11,7 +11,57 @@
         $_SESSION['mensagemAlterarQtdEstoque'] = '';
         $sqlCode = "TRUNCATE TABLE nome_equipes";
         $sqlQuery = $mysqli->query($sqlCode);
+
+        //excluir todas as colunas 'contagem_' do banco de dados
+        $columnExists = true;
+        $i=1;
+        while ($columnExists) {
+            $columnName = 'contagem_' . $i;
+            
+            // Verifica se a coluna existe antes de tentar excluir
+            $checkColumnQuery = $mysqli->query("SELECT * FROM information_schema.columns WHERE table_name = 'estoque' AND column_name = '$columnName'");
+            if ($checkColumnQuery->num_rows > 0) {
+                // A coluna existe, então executa o comando para excluí-la
+                $sqlCode = "ALTER TABLE `estoque` DROP `$columnName`";
+                $sqlQuery = $mysqli->query($sqlCode);
+                if (!$sqlQuery) {
+                    echo "Erro ao excluir a coluna '$columnName': " . $mysqli->error;
+                    break; // Sai do loop se houver erro
+                }
+                $i++; // Passa para a próxima coluna
+            } else {
+                // A coluna não existe mais, então termina o loop
+                $columnExists = false;
+            }
+        }
+
+        //excluir todas as colunas 'nome_contagem_' do banco de dados
+        $columnExists = true;
+        $i=1;
+        while ($columnExists) {
+            $columnName = 'nome_contagem_' . $i;
+            
+            // Verifica se a coluna existe antes de tentar excluir
+            $checkColumnQuery = $mysqli->query("SELECT * FROM information_schema.columns WHERE table_name = 'estoque' AND column_name = '$columnName'");
+            if ($checkColumnQuery->num_rows > 0) {
+                // A coluna existe, então executa o comando para excluí-la
+                $sqlCode = "ALTER TABLE `estoque` DROP `$columnName`";
+                $sqlQuery = $mysqli->query($sqlCode);
+                if (!$sqlQuery) {
+                    echo "Erro ao excluir a coluna '$columnName': " . $mysqli->error;
+                    break; // Sai do loop se houver erro
+                }
+                $i++; // Passa para a próxima coluna
+            } else {
+                // A coluna não existe mais, então termina o loop
+                $columnExists = false;
+            }
+        }
+        //Zerar configurações da contagem atual
+        $sqlCode = "UPDATE config SET valor=0 WHERE parametro='contando' OR parametro='num_contagem'";
+        $sqlQuery = $mysqli->query($sqlCode);
         header('location: main.php');
+
     } elseif (isset($_POST['nao'])) {
         header('location: VerEstoque.php');
     }
